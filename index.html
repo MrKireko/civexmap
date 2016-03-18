@@ -3,59 +3,13 @@
 <!--Tracking code by Mr_L1berty
     Uploaded by MrKireko-->
 <head>
-<style>
-body{
-  position:absolute;
-}
-
-img, canvas, div{
-  position: absolute;
-  top: -8px;
-  left: -8px;
-}
-
-#coords{
-  position: fixed;
-  top:0px;
-  left:0px;
-  background-color:rgba(0,0,0,0.5);
-  color:white;
-  padding: 3px;
-  border-radius: 3px;
-  font-size: 30px;
-}
-</style>
-<script>
-var mouseX, mouseY;
-function init(){
-  var imageElement = document.getElementById("baseMapPNG");
-  var canvasElement = document.getElementById("pointerShow");
-  var context = canvasElement.getContext("2d");
-  context.canvas.height = imageElement.height;
-  context.canvas.width = imageElement.width;
-  
-  window.onmousemove = getMouseCoordinates;
-}
-
-function getMouseCoordinates(evt){
-  mouseX = evt.pageX;
-  mouseY = evt.pageY;
-  
-  //17664 blocks wide and high
-  //vs 4322 px wide and high
-  //equals a factor of 4.0869967607589
-  mouseX *= 4.0869967607589;
-  mouseY *= 4.0869967607589;
-  
-  mouseX = parseInt(mouseX) - 10112;
-  mouseY = parseInt(mouseY) - 6528;
-  document.getElementById("coords").innerHTML = "x: " + mouseX + "<br/>z: " + mouseY;
-}
-</script>
+    <link rel=stylesheet type=text/css href="style.css">
+    <script type="text/javascript" src="point.js"></script>
+    <script src="dragscroll.js"></script>
 </head>
-<body onload="init()">
-<img id="baseMapPNG" src="basemap.png" />
-<canvas id="pointerShow" >Get a canvas-able browser, mate</canvas>
-<div id="coords"></div>
+<body onload="init()" class="dragscroll">
+    <img id="baseMapPNG" class="dragscroll" src="basemap.png" />
+    <canvas id="pointerShow">Get a canvas-able browser, mate</canvas>
+    <div id="coords"></div>
 </body>
 </html>
